@@ -6,7 +6,8 @@ import ProfileCard from "./components/ProfileCard";
 import ProfileModal from "./components/ProfileModal";
 
 function App() {
-  const [darkMode, setDarkMode] = useState(true);
+  // começa CLARO
+  const [darkMode, setDarkMode] = useState(false);
 
   const [filters, setFilters] = useState({
     search: "",
@@ -17,8 +18,10 @@ function App() {
 
   const [selectedProfile, setSelectedProfile] = useState(null);
 
+  // controla a classe "dark" no <html>
   useEffect(() => {
     const root = document.documentElement;
+
     if (darkMode) {
       root.classList.add("dark");
     } else {
@@ -59,14 +62,19 @@ function App() {
   });
   // ---------------------------------------
 
+  // tema aplicado direto no container principal
+  const appThemeClasses = darkMode
+    ? "bg-slate-900 text-slate-100"
+    : "bg-slate-100 text-slate-900";
+
   return (
-    <div className="min-h-screen bg-slate-100 text-slate-900 dark:bg-slate-900 dark:text-slate-100 transition-colors">
+    <div className={`min-h-screen transition-colors ${appThemeClasses}`}>
       <Header darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
 
       <main className="max-w-6xl mx-auto px-4 pb-12">
         <SearchFilters filters={filters} onChange={handleFiltersChange} />
 
-        <p className="text-sm text-slate-500 dark:text-slate-400 mt-4 mb-2">
+        <p className="text-sm text-slate-700 dark:text-slate-400 mt-4 mb-2">
           {filteredProfiles.length} profissionais do futuro encontrados
         </p>
 
@@ -90,7 +98,8 @@ function App() {
         <h2 className="text-lg sm:text-xl font-semibold mb-2 mt-8">
           Conectando talentos às profissões do futuro
         </h2>
-        <p className="text-sm text-slate-600 dark:text-slate-300">
+
+        <p className="text-sm text-slate-700 dark:text-slate-300">
           A FutureConnect simula uma rede profissional focada em IA, Automação,
           Web3 e Realidades Imersivas, permitindo explorar competências,
           formações e interesses alinhados ao futuro do trabalho.
