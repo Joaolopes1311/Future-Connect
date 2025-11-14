@@ -3,7 +3,7 @@ import Header from "./components/Header";
 import SearchFilters from "./components/SearchFilters";
 import { profiles } from "./data/profiles";
 import ProfileCard from "./components/ProfileCard";
-import ProfileModal from "./components/ProfileModal"; // <-- import do modal
+import ProfileModal from "./components/ProfileModal";
 
 function App() {
   const [darkMode, setDarkMode] = useState(true);
@@ -15,7 +15,6 @@ function App() {
     tecnologia: "",
   });
 
-  // novo estado: qual perfil está selecionado pro modal
   const [selectedProfile, setSelectedProfile] = useState(null);
 
   useEffect(() => {
@@ -32,6 +31,34 @@ function App() {
   const handleFiltersChange = (newFilters) =>
     setFilters((prev) => ({ ...prev, ...newFilters }));
 
+  // ---------- LÓGICA DOS FILTROS ----------
+  const filteredProfiles = profiles.filter((p) => {
+    const searchText = filters.search.trim().toLowerCase();
+    const areaText = filters.area.trim().toLowerCase();
+    const cidadeText = filters.cidade.trim().toLowerCase();
+    const techText = filters.tecnologia.trim().toLowerCase();
+
+    const matchesSearch =
+      !searchText ||
+      p.nome.toLowerCase().includes(searchText) ||
+      p.cargo.toLowerCase().includes(searchText);
+
+    const matchesArea =
+      !areaText || p.area.toLowerCase().includes(areaText);
+
+    const matchesCidade =
+      !cidadeText || p.localizacao.toLowerCase().includes(cidadeText);
+
+    const matchesTech =
+      !techText ||
+      p.habilidadesTecnicas.some((skill) =>
+        skill.toLowerCase().includes(techText)
+      );
+
+    return matchesSearch && matchesArea && matchesCidade && matchesTech;
+  });
+  // ---------------------------------------
+
   return (
     <div className="min-h-screen bg-slate-100 text-slate-900 dark:bg-slate-900 dark:text-slate-100 transition-colors">
       <Header darkMode={darkMode} toggleDarkMode={toggleDarkMode} />
@@ -39,17 +66,20 @@ function App() {
       <main className="max-w-6xl mx-auto px-4 pb-12">
         <SearchFilters filters={filters} onChange={handleFiltersChange} />
 
-        <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 mt-4">
-          {profiles.map((p) => (
+        <p className="text-sm text-slate-500 dark:text-slate-400 mt-4 mb-2">
+          {filteredProfiles.length} profissionais do futuro encontrados
+        </p>
+
+        <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {filteredProfiles.map((p) => (
             <ProfileCard
               key={p.id}
               profile={p}
-              onClick={() => setSelectedProfile(p)} // <-- abre o modal
+              onClick={() => setSelectedProfile(p)}
             />
           ))}
         </section>
 
-        {/* modal só aparece se tiver alguém selecionado */}
         {selectedProfile && (
           <ProfileModal
             profile={selectedProfile}
@@ -61,9 +91,9 @@ function App() {
           Conectando talentos às profissões do futuro
         </h2>
         <p className="text-sm text-slate-600 dark:text-slate-300">
-          Em breve você vai conseguir explorar perfis de profissionais de IA,
-          Automação, Web3 e Realidades Imersivas filtrando por área, cidade e
-          tecnologias.
+          A FutureConnect simula uma rede profissional focada em IA, Automação,
+          Web3 e Realidades Imersivas, permitindo explorar competências,
+          formações e interesses alinhados ao futuro do trabalho.
         </p>
       </main>
     </div>
