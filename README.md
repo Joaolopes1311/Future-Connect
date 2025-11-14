@@ -1,4 +1,7 @@
-# FutureConnect – Profissionais do Futuro
+# 🚀 FutureConnect – Profissionais do Futuro  
+### Global Solution FIAP – 2º Semestre de 2025
+
+---
 
 ## 👥 Autoria
 - **João Pedro Morra Lopes – RM 565737**  
@@ -8,50 +11,62 @@
 
 # 📘 Sobre o Projeto
 
-FutureConnect é uma plataforma desenvolvida para a Global Solution FIAP – 2º semestre de 2025, com foco em **tecnologias emergentes** e no **futuro do trabalho**.
+**FutureConnect** é uma plataforma web desenvolvida para a **Global Solution FIAP**, simulando uma rede profissional voltada para as carreiras do futuro do trabalho.
 
-A aplicação simula uma rede profissional onde é possível navegar, filtrar e visualizar perfis completos de **60 profissionais do futuro**, distribuídos entre áreas como:
+A aplicação apresenta **60 perfis profissionais completos**, cada um contendo:
+
+- Informações pessoais e acadêmicas  
+- Experiências profissionais  
+- Hard e soft skills  
+- Projetos  
+- Certificações  
+- Idiomas  
+- Áreas de interesse  
+
+Os perfis estão distribuídos entre áreas emergentes como:
 
 - Inteligência Artificial  
-- Automação & Robótica  
+- Automação e Robótica  
 - Web3 / Blockchain  
-- Realidades Imersivas (XR)  
+- Realidades Imersivas (AR/VR/XR)  
 - UX & Pesquisa  
 - Cloud, Dados e Cibersegurança  
 
-O objetivo é representar, de forma visual e funcional, uma experiência moderna de consulta profissional alinhada às competências emergentes que moldam o futuro do trabalho.
+---
+
+# 🔐 Usuários e Senhas
+
+Este projeto **não possui autenticação ou login**.  
+Não há usuários cadastrados e não existem senhas necessárias para acesso.  
+Toda a navegação é livre, conforme permitido pelo enunciado da FIAP.
 
 ---
 
 # 🎯 Objetivos da Aplicação
 
-- Construir uma interface capaz de exibir **60 perfis profissionais completos**.
-- Simular interações e funcionalidades presentes em redes profissionais modernas.
-- Demonstrar compreensão sobre:
-  - Hard skills e soft skills futuras
-  - Áreas de interesse
-  - Formação
-  - Projetos e certificações
-  - Idiomas
-  - Experiências profissionais
-- Permitir busca filtrada por:
-  - Nome ou cargo
-  - Área de atuação
-  - Cidade
-  - Tecnologias específicas
+- Representar visualmente **60 profissionais fictícios** do futuro do trabalho.  
+- Implementar filtros inteligentes para busca combinada:
+  - Nome/Cargo  
+  - Área de atuação  
+  - Cidade  
+  - Tecnologia ou skill  
+- Exibir informações completas em um **modal interativo**.  
+- Implementar **modo claro/escuro** via Tailwind.  
+- Estruturar dados em JSON local.  
+- Demonstrar domínio de tecnologias modernas de front-end.
 
 ---
 
 # 🧩 Funcionalidades Principais
 
 ### 🔍 Filtros Inteligentes
-Filtragem por:
-- Nome / Cargo  
+Busca combinada por:
+- Nome ou cargo  
 - Área  
 - Cidade  
-- Tecnologias / Skills  
+- Tecnologias (skills)  
 
-A filtragem é combinada (**lógica AND**), permitindo buscas refinadas.
+Todos os filtros funcionam simultaneamente (**lógica AND**).
 
 ---
 
@@ -61,9 +76,8 @@ Cada card exibe:
 - Nome  
 - Cargo  
 - Localização  
-- Área de atuação  
-- Resumo curto  
-- Principais hard skills  
+- Área  
+- Hard skills principais  
 
 ---
 
@@ -75,37 +89,34 @@ Ao clicar em um card, abre-se um modal contendo:
 - Experiências  
 - Hard skills  
 - Soft skills  
-- Projetos com links  
+- Projetos (com links clicáveis)  
 - Certificações  
 - Idiomas  
 - Temas de interesse  
 
-Na parte inferior, botões simulam interações:
-
-- **Recomendar profissional** (alerta simulado)  
-- **Enviar mensagem** (prompt para digitar e simulação de envio)
+Na parte inferior existem ações simuladas:
+- **Recomendar profissional** (alert)  
+- **Enviar mensagem** (prompt para simulação)
 
 ---
 
-### 🌙 Modo Claro/Escuro
-O usuário pode alternar entre:
-
-- **Light Mode**
-- **Dark Mode**
-
-Implementado via Tailwind (`darkMode: 'class'`) e manipulação da classe `dark` no documento.
+### 🌙 Modo Claro/Escuro (Dark Mode)
+- Alternância entre **Light Mode** e **Dark Mode**  
+- Implementado com Tailwind (`darkMode: "class"`)  
+- Classe `dark` adicionada/removida dinamicamente via React
 
 ---
 
 # 🛠️ Tecnologias Utilizadas
 
-- **React**
-- **Vite**
-- **Tailwind CSS v4**
-- **JavaScript (ES6+)**
-- **RandomUser API (somente para fotos)**
+- **React**  
+- **Vite**  
+- **Tailwind CSS (v4)**  
+- **JavaScript ES6+**  
+- **RandomUser API** (apenas para fotos)  
+- JSON local para todos os dados dos perfis
 
-Não há backend real: todos os dados são **locais**, conforme requisito da Global Solution.
+Não há backend — toda a aplicação é client-side, conforme exigência da FIAP.
 
 ---
 
@@ -119,20 +130,18 @@ src/
     ProfileCard.jsx
     ProfileModal.jsx
   data/
-    profiles.js   # gera 60 perfis simulados automaticamente
+    profiles.js   # gera automaticamente 60 perfis
   App.jsx
   main.jsx
   index.css
+
 tailwind.config.js
 postcss.config.js
 README.md
 
+🧾 Estrutura dos Dados (JSON)
 
-Dados dos Profissionais
-
-Todos os perfis são gerados em src/data/profiles.js.
-
-Cada um contém:
+Os perfis seguem o seguinte modelo:
 
 {
   "id": 1,
@@ -153,24 +162,31 @@ Cada um contém:
 }
 
 
+🛠 Instalação do Projeto (passo a passo)
+Pré-requisitos
 
-Como Executar Localmente
+Node.js (LTS)
 
-Pré-requisitos:
+npm ou yarn
 
-Node.js LTS
-
-npm (ou yarn)
-
-Passos:
+Passos
 # Clonar o repositório
-git clone https://github.com/seu-usuario/future-connect.git
+git clone https://github.com/Joaolopes1311/Future-Connect.git
 
-# Entrar no projeto
-cd future-connect
+# Entrar na pasta do projeto
+cd Future-Connect
 
 # Instalar dependências
 npm install
 
 # Rodar o projeto
 npm run dev
+
+A aplicação abrirá em:
+
+http://localhost:5173
+
+
+🔗 Link do Repositório
+Repositório GitHub:
+👉 https://github.com/Joaolopes1311/Future-Connect
