@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react';
 import Header from './components/Header';
 import SearchFilters from './components/SearchFilters';
+import { profiles } from "./data/profiles";
+import ProfileCard from "./components/ProfileCard";
+
 
 function App() {
   const [darkMode, setDarkMode] = useState(true);
@@ -32,6 +35,13 @@ function App() {
 
       <main className="max-w-6xl mx-auto px-4 pb-12">
         <SearchFilters filters={filters} onChange={handleFiltersChange} />
+
+        <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+  {profiles.map((p) => (
+    <ProfileCard key={p.id} profile={p} onClick={() => {}} />
+  ))}
+</section>
+
 
         <h2 className="text-lg sm:text-xl font-semibold mb-2">
           Conectando talentos às profissões do futuro
